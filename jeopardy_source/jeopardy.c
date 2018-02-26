@@ -2,6 +2,7 @@
  * Tutorial 4 Jeopardy Project for SOFE 3950U / CSCI 3020U: Operating Systems
  *
  * Copyright (C) 2018, Clyve Widjaya 100590208
+ *                     Fawwaz Khayyat 100568635
  * All rights reserved.
  *
  */
@@ -20,7 +21,7 @@
 // Put global environment variables here
 
 // Processes the answer from the user containing what is or who is and tokenizes it to retrieve the answer.
-void tokenize(char *input, char **tokens, int count);
+void tokenize(char *input, char **tokens);
 
 // Displays the game results for each player, their name and final score, ranked from first to last place
 void show_results(struct player *players);
@@ -84,24 +85,12 @@ int main(int argc, char *argv[]){
 
         printf("Answer > ");
         fgets(buffer, BUFFER_LEN, stdin);
-        for(int i = 0; i < BUFFER_LEN; i++){
-            if (buffer[i] == '\n'){
-                buffer[i] = ' ';
-            }
-            else if (buffer[i] == ' ' && buffer[i+1] != ' '){
-                count++;
-            }
-        }
-        count++;
-        char *token[count][BUFFER_LEN];
-        token[0] = "coba";
-        token[1] = "coba2";
-        token[2] = "coba3";
-        //printf("passd\n");
-        tokenize(buffer, &token, count);
-        printf("Check token: |%s,%s,%s|\n", *token[0], *token[1], *token[2]);
-        //printf("count: %i token2: |%s|\n",count, *token[0]);
-        if (valid_answer(category, dollarValue, token[2])){
+      
+        char *token;
+        
+        tokenize(buffer, &token);
+
+        if (valid_answer(category, dollarValue, token)){
           notAnswered--;
           update_score(players, NUM_PLAYERS, players[playerIndex].name, dollarValue);
           playerIndex--;
@@ -133,20 +122,21 @@ void show_results(struct player *players){
   }
 }
 
-void tokenize(char *input, char **tokens, int count){
+void tokenize(char *input, char **tokens){
   printf("|%s|\n", input);
 
-  printf("|%s,%s,%s|\n", &tokens[0], &tokens[1], &tokens[2]);
-  char delims[] = " ";
-  char *tok = strtok(input, delims);
-  int index = 0;
+  //printf("|%s,%s,%s|\n", &tokens[0], &tokens[1], &tokens[2]);
+  const char delims[2] = " \n";
+  char *tok;
 
-  while(tok != NULL){
-    strcpy(tokens[index], tok);
-    printf("index:%i |%s|\n",index, tokens[index]);
+  /* get the first token */
+  tok = strtok(input, delims);
+  int num_tokens = 1;
+
+  /* Assuming the third word is the start of the answer */
+  while(tok != NULL && num_tokens <=2){
     tok = strtok(NULL,delims);
-    index++;
+    num_tokens++;
   }
-
-  printf("|%s,%s,%s|\n", tokens[0], tokens[1], tokens[2]);
+  *tokens = tok;
 }

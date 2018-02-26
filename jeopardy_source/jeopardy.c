@@ -93,15 +93,21 @@ int main(int argc, char *argv[]){
             }
         }
         count++;
+        /*
         char *token[count][BUFFER_LEN];
         token[0] = "coba";
         token[1] = "coba2";
         token[2] = "coba3";
+        */
+        char *token;
+        
         //printf("passd\n");
         tokenize(buffer, &token, count);
-        printf("Check token: |%s,%s,%s|\n", *token[0], *token[1], *token[2]);
+
+        //printf("Check token: |%s,%s,%s|\n", *token[0], *token[1], *token[2]);
+
         //printf("count: %i token2: |%s|\n",count, *token[0]);
-        if (valid_answer(category, dollarValue, token[2])){
+        if (valid_answer(category, dollarValue, token)){
           notAnswered--;
           update_score(players, NUM_PLAYERS, players[playerIndex].name, dollarValue);
           playerIndex--;
@@ -136,17 +142,21 @@ void show_results(struct player *players){
 void tokenize(char *input, char **tokens, int count){
   printf("|%s|\n", input);
 
-  printf("|%s,%s,%s|\n", &tokens[0], &tokens[1], &tokens[2]);
-  char delims[] = " ";
-  char *tok = strtok(input, delims);
-  int index = 0;
+  //printf("|%s,%s,%s|\n", &tokens[0], &tokens[1], &tokens[2]);
+  const char delims[2] = " ";
+  char *tok;
 
-  while(tok != NULL){
-    strcpy(tokens[index], tok);
-    printf("index:%i |%s|\n",index, tokens[index]);
+  /* get the first token */
+  tok = strtok(input, delims);
+  int num_tokens = 1;
+
+  /* Assuming the third word is the start of the answer */
+  while(tok != NULL && num_tokens <=2){
+    //strcpy(tokens[index], tok);
+    //printf("index:%i |%s|\n", tok);
     tok = strtok(NULL,delims);
-    index++;
+    num_tokens++;
   }
-
-  printf("|%s,%s,%s|\n", tokens[0], tokens[1], tokens[2]);
+  *tokens = tok;
+  //printf("|%s,%s,%s|\n", tokens[0], tokens[1], tokens[2]);
 }

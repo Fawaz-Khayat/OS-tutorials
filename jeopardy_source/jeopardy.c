@@ -34,9 +34,7 @@ int main(int argc, char *argv[]){
     int playerIndex = 0;
     int dollarValue;
     char *category = (char *) calloc(BUFFER_LEN, sizeof(char));
-    // // EXAMPLE: player 1 is named Fred
-    // strcpy(players[0].name, "Fred");
-    // printf("%s\n", players[0].name);
+    char *playerName = (char *) calloc(BUFFER_LEN, sizeof(char));
 
     // Buffer for user input
     char buffer[BUFFER_LEN] = { 0 };
@@ -47,7 +45,13 @@ int main(int argc, char *argv[]){
     // Prompt for players names
     for (int i = 0; i < NUM_PLAYERS; i++){
       printf("Player %i name: ", i+1);
-      scanf("%s", players[i].name);
+      scanf("%s", playerName);
+      if (!player_exists(players, NUM_PLAYERS, playerName)){
+        strcpy(players[i].name, playerName);
+      } else {
+        printf("Name exists, enter new name!\n");
+        i--;
+      }
     }
 
     // initialize each of the players in the array
@@ -61,12 +65,6 @@ int main(int argc, char *argv[]){
     while (game_state){
       int count = 0;
       printf("\n");
-        // EXAMPLE: This line gets a line of input from the user
-    //     fgets(buffer, BUFFER_LEN, stdin);
-    //     printf("[before]%s[after]", buffer);
-    //
-		// if (strcmp(buffer, "hello\n") == 0) printf(":)\n");
-		// if (strcmp(buffer, "world\n") == 0) printf(":)\n");
       display_categories();
 
       printf("\n%s's turn to play!\n", players[playerIndex].name);
@@ -76,8 +74,6 @@ int main(int argc, char *argv[]){
       scanf("%i", &dollarValue);
       int c;
       while ((c = getchar()) != EOF && c != '\n');
-      // printf("|%s|\n",category);
-      // printf("|%i|\n", dollarValue);
       if (already_answered(category, dollarValue)){
         playerIndex--;
       } else {
@@ -85,9 +81,9 @@ int main(int argc, char *argv[]){
 
         printf("Answer > ");
         fgets(buffer, BUFFER_LEN, stdin);
-      
+
         char *token;
-        
+
         tokenize(buffer, &token);
 
         if (valid_answer(category, dollarValue, token)){

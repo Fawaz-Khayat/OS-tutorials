@@ -1,0 +1,3 @@
+print "correct answer" if the answer was correct.
+Check for correct answer input from the user.
+Fill question.txt with questions.

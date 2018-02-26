@@ -77,7 +77,7 @@ bool valid_answer(char *category, int value, char *answer){
   // Look into string comparison functions
   for (int i = 0; i < NUM_QUESTIONS; i++){
     if ((strcmp(questions[i].category, category) == 0) && (questions[i].value == value)){
-      if (strcmp(questions[i].answer, answer) == 0) {
+      if (strcmp(questions[i].answer , answer) == 0) {
         questions[i].answered = true;
         return true;
       } else {

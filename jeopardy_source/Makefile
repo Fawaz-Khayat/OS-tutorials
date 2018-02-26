@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99
+CFLAGS = -Wall -Wextra -ggdb -g -std=c99
 LFLAGS =
 LIBS =
 SOURCES = jeopardy.c questions.c players.c

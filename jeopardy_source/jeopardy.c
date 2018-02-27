@@ -79,7 +79,8 @@ int main(int argc, char *argv[]){
       } else {
         display_question(category, dollarValue);
 
-        printf("Answer > ");
+        printf("start your answer with 'what is' or 'who is' >");
+
         fgets(buffer, BUFFER_LEN, stdin);
 
         char *token;

@@ -1,12 +1,12 @@
-programming,Last in first out,stack,150
-programming,Number of strtok() parameter,2,300
-programming,Can an Interface (in Java) be final,no,450
-programming,Which OO concept is achieved by using overloading and overriding,polymorphism,600
-algorithms,A keyword used in statement to repeat instruction(s) spesific number of times,for,150
-algorithms,A sort using  divide and conquer algorithm with O(n log n) perfomanc,mergesort,300
-algorithms,Is an algorithmic paradigm that follows the problem solving heuristic of making the locally optimal choice at each stage with the hope of finding a global optimum,greedy,450
-algorithms,Non-parametric method used for classification and regression,KNN,600
-databases,Which SQL command is used to add a row,insert,150
-databases,Is report component of a database (yes/no),yes,300
-databases,Helping people keep track of things is the purpose of a database (yes/no),yes,450
-databases,IDMS is an early implementation of the relational model developed by E.F. Codd of IBM (yes/no),no,600
+programming;A name represent a place in memory to hold a changable value;variable;150
+programming;Set of instructions defined by a name, parameters, and a return value;function;300
+programming;Last in first out;stack;450
+programming;A concept in OO which achieved by using overloading and overriding;polymorphism;600
+algorithms;A keyword used in statement to repeat instruction(s) spesific number of times;for;150
+algorithms;A sort using  divide and conquer algorithm with O(n log n) perfomanc;mergesort;300
+algorithms;Is an algorithmic paradigm that follows the problem solving heuristic of making the locally optimal choice at each stage with the hope of finding a global optimum;greedy;450
+algorithms;Non-parametric method used for classification and regression;KNN;600
+databases;Integrated Database Management System;IDMS;150
+databases;A set of data elements (values) using a model of vertical columns (identifiable by name) and horizontal rows;table;300
+databases;A set of related data represented horizontally in a table;row;450
+databases;A SQL command used to add a row;insert;600

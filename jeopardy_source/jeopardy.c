@@ -87,6 +87,7 @@ int main(int argc, char *argv[]){
         tokenize(buffer, &token);
 
         if (valid_answer(category, dollarValue, token)){
+          printf("Correct Answer\n");
           notAnswered--;
           update_score(players, NUM_PLAYERS, players[playerIndex].name, dollarValue);
           playerIndex--;

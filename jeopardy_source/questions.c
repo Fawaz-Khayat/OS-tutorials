@@ -22,7 +22,7 @@ void initialize_game(void){
 
     while (fgets(str, MAXCHAR, fp) != NULL){
       char *line = NULL;
-      char delims[] = ",";
+      char delims[] = ";";
       line = strtok(str, delims);
       //while (line != NULL){
       strcpy(questions[questionIndex].category, line);
